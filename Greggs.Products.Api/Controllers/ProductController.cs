@@ -27,4 +27,10 @@ public class ProductController : ControllerBase
     {
         return Ok(_productService.GetProducts(pageStart, pageSize));
     }
+
+    [HttpGet]
+    [Route("euros")]
+    public ActionResult<IEnumerable<Product>> GetProductEurope(int pageStart = 0, int pageSize = 5) { 
+        return Ok(_productService.GetProductsInEuros(pageStart, pageSize));
+    }
 }

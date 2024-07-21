@@ -6,5 +6,6 @@ namespace Greggs.Products.Api.Services
     public interface IProductService
     {
         IEnumerable<Product> GetProducts(int? pageStart, int? pageSize);
+        IEnumerable<Product> GetProductsInEuros(int? pageStart, int? pageSize);
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Text.Json.Serialization;
 
 namespace Greggs.Products.Api;
 
@@ -14,8 +15,12 @@ public class Startup
     {
         services.AddScoped<IDataAccess<Product>, ProductAccess>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<ICurrencyService, CurrencyService>();
 
-        services.AddControllers();
+        services.AddControllers().AddJsonOptions(opts =>
+        {
+            opts.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+        });
 
         services.AddSwaggerGen();
     }
